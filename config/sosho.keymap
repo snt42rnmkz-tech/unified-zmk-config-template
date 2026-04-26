@@ -5,7 +5,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
 / {
@@ -150,6 +149,16 @@
             key-positions = <31 33>;
             timeout-ms = <50>;
         };
+
+        boot_right {
+            bindings = <&bootloader>;
+            key-positions = <42 43 40 41>;
+        };
+
+        boot_left {
+            bindings = <&bootloader>;
+            key-positions = <38 39 36 37>;
+        };
     };
 };
 
@@ -161,6 +170,13 @@
             bindings = <&kp HOME &kp R &kp END &kp LEFT_ARROW &kp T>;
             label = "TIMELINE_IN_OUT";
         };
+
+        enter_back_to_defalut: equal_back_to_defalut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp KP_ENTER &to 0>;
+            label = "EQUAL_BACK_TO_DEFALUT";
+        };
     };
 
     keymap {
@@ -171,7 +187,7 @@
 &kp GRAVE  &kp Q     &kp W  &kp E  &kp R      &kp T  &kp Y  &kp U          &kp I      &kp O    &kp P      &kp ESCAPE
 &kp TAB    &kp A     &kp S  &kp D  &kp F      &kp G  &kp H  &kp J          &kp K      &kp L    &kp SQT    &kp ENTER
 &kp LSHFT  &kp Z     &kp X  &kp C  &kp V      &kp B  &kp N  &kp M          &kp COMMA  &kp DOT  &kp SLASH  &kp LEFT_COMMAND
-&kp ESC    &kp LALT                &kp SPACE  &mo 2  &mo 1  &kp BACKSPACE                      &mo 3      &kp LA(LGUI)
+&kp ESC    &kp LALT                &kp SPACE  &mo 2  &mo 1  &kp BACKSPACE                      &tog 3     &kp LA(LGUI)
             >;
 
             //&msc_ec_lとrは、上のビヘイビアで作ったもの。
@@ -181,28 +197,28 @@
 
         layer_1 {
             bindings = <
-&trans  &trans  &kp PAGE_UP     &trans          &kp R            &kp HOME      &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp N9      &trans  &trans
-&trans  &trans  &kp PAGE_DOWN   &kp UP_ARROW    &kp T            &kp END       &kp N4        &kp NUMBER_5  &kp N6        &kp END     &trans  &trans
-&trans  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp N0        &kp N1        &kp N2        &kp N3        &kp PERIOD  &trans  &trans
-&trans  &trans                                  &kp LEFT_SHIFT   &kp LEFT_GUI  &trans        &trans                                  &trans  &trans
+&trans  &trans  &kp PAGE_UP     &timeline_in_out  &kp R            &kp HOME      &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp N9      &trans  &trans
+&trans  &trans  &kp PAGE_DOWN   &kp UP_ARROW      &kp T            &kp END       &kp N4        &kp NUMBER_5  &kp N6        &kp END     &trans  &trans
+&trans  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW    &kp RIGHT_ARROW  &kp N0        &kp N1        &kp N2        &kp N3        &kp PERIOD  &trans  &trans
+&trans  &trans                                    &kp LEFT_SHIFT   &kp LEFT_GUI  &trans        &trans                                  &trans  &trans
             >;
         };
 
         layer_2 {
             bindings = <
-&trans  &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &trans  &trans    &kp MINUS  &kp EQUAL  &trans     &trans
-&trans  &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &trans  &kp LBKT  &kp RBKT   &kp NUBS   &trans     &trans
-&trans  &kp F11  &kp F12  &kp F13  &kp F14  &kp F15  &trans  &kp SEMI  &kp SQT    &trans     &kp QMARK  &kp BSLH
-&trans  &trans                     &trans   &trans   &trans  &trans                          &trans     &trans
+&trans  &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp EQUAL  &trans     &trans
+&trans  &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp NUBS   &trans     &trans
+&trans  &kp F11  &kp F12  &kp F13  &kp F14  &kp F15  &trans  &kp SEMI              &kp SQT                &trans     &kp QMARK  &kp BSLH
+&trans  &trans                     &trans   &trans   &trans  &trans                                                  &trans     &trans
             >;
         };
 
         layer_3 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans        &trans        &trans        &trans          &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans        &trans        &trans        &bt BT_CLR_ALL  &bt BT_CLR
-&trans  &trans                  &trans  &trans  &trans  &out OUT_BLE                              &trans          &trans
+&trans  &trans  &trans  &trans  &trans          &kp KP_PLUS      &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &trans                  &trans  &trans
+&trans  &trans  &trans  &trans  &trans          &kp KP_MINUS     &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &trans                  &trans  &trans
+&trans  &trans  &trans  &trans  &trans          &kp KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &enter_back_to_defalut  &trans  &bt BT_CLR
+&trans  &trans                  &kp LEFT_SHIFT  &kp LEFT_GUI     &kp PERIOD       &kp BACKSPACE                                             &tog 0  &trans
             >;
         };
 
