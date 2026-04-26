@@ -69,10 +69,45 @@
         //作ったけど消した。ポインティングデバイスをスクロールにしたい人向け
         //31 M 32 ,
 
-        combo_SCROLL {
+        combo_GUI_Left {
+            bindings = <&kp LEFT_GUI>;
+            key-positions = <28 27>;
             timeout-ms = <50>;
-            key-positions = <27 28>;
-            bindings = <&mo 4>;
+        };
+
+        combo_SHIFT_left {
+            bindings = <&kp LEFT_SHIFT>;
+            key-positions = <27 26>;
+            timeout-ms = <50>;
+        };
+
+        combo_GUI_SHIFT_left {
+            bindings = <&kp LS(LEFT_GUI)>;
+            key-positions = <28 27 26>;
+            timeout-ms = <50>;
+        };
+
+        combo_CSA_left {
+            bindings = <&kp LS(LG(LEFT_ALT))>;
+            key-positions = <26 27 28 29>;
+            timeout-ms = <50>;
+        };
+
+        combo_CSO_left {
+            bindings = <&kp LS(LG(LCTRL))>;
+            key-positions = <25 26 27 28>;
+            timeout-ms = <50>;
+        };
+
+        combo_ALT_left {
+            bindings = <&kp LEFT_ALT>;
+            key-positions = <29 27>;
+        };
+
+        combo_CTRL_left {
+            bindings = <&kp LEFT_CONTROL>;
+            key-positions = <28 26>;
+            timeout-ms = <50>;
         };
     };
 };
@@ -96,10 +131,10 @@
 
         layer_1 {
             bindings = <
-&kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp N9     &kp N0  &kp DEL
-&trans     &trans  &trans  &trans  &trans  &trans  &kp N4        &kp NUMBER_5  &kp N6        &kp END    &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans  &kp N1        &kp N2        &kp N3        &kp RIGHT  &trans  &trans
-&trans     &trans                  &trans  &trans  &trans        &trans                                 &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp N9      &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &kp N4        &kp NUMBER_5  &kp N6        &kp END     &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &kp N0  &kp N1        &kp N2        &kp N3        &kp PERIOD  &trans  &trans
+&trans  &trans                  &trans  &trans  &trans        &trans                                  &trans  &trans
             >;
         };
 
