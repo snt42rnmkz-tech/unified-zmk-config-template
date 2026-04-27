@@ -141,7 +141,7 @@
 
         combo_ALT_right {
             bindings = <&kp LEFT_ALT>;
-            key-positions = <30 32>;
+            key-positions = <30 31>;
         };
 
         combo_CTRL_right {
@@ -158,6 +158,18 @@
         boot_left {
             bindings = <&bootloader>;
             key-positions = <38 39 36 37>;
+        };
+
+        combo_LCLK_right {
+            bindings = <&mkp LCLK>;
+            key-positions = <20 19>;
+            timeout-ms = <50>;
+        };
+
+        combo_RCLK_right {
+            bindings = <&mkp RCLK>;
+            key-positions = <20 21>;
+            timeout-ms = <50>;
         };
     };
 };
