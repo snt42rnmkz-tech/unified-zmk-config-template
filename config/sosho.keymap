@@ -190,6 +190,8 @@
             #binding-cells = <0>;
             bindings = <&kp HOME &kp R &kp END &kp LEFT_ARROW &kp T>;
             label = "TIMELINE_IN_OUT";
+            wait-ms = <20>;
+            tap-ms = <10>;
         };
 
         enter_back_to_defalut: equal_back_to_defalut {
