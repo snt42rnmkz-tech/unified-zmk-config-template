@@ -36,13 +36,21 @@
             tapping-term-ms = <35>;
         };
 
-        layers: layers {
+        layers1_2: layers1_2 {
             compatible = "zmk,behavior-tap-dance";
-            label = "LAYERS";
+            label = "LAYERS1_2";
             #binding-cells = <0>;
             bindings = <&mo 1>, <&mo 2>;
 
             tapping-term-ms = <50>;
+        };
+
+        Layers3_4: Layers3_4 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LAYERS3_4";
+            #binding-cells = <0>;
+            tapping-term-ms = <50>;
+            bindings = <&mo 3>, <&mo 4>;
         };
     };
 };
@@ -218,10 +226,10 @@
 
         default_layer {
             bindings = <
-&kp GRAVE  &kp Q     &kp W  &kp E  &kp R      &kp T   &kp Y    &kp U          &kp I      &kp O    &kp P      &kp ESCAPE
-&kp TAB    &kp A     &kp S  &kp D  &kp F      &kp G   &kp H    &kp J          &kp K      &kp L    &kp SQT    &kp ENTER
-&kp LSHFT  &kp Z     &kp X  &kp C  &kp V      &kp B   &kp N    &kp M          &kp COMMA  &kp DOT  &kp SLASH  &kp LEFT_COMMAND
-&kp ESC    &kp LALT                &kp SPACE  &Enter  &layers  &kp BACKSPACE                      &tog 3     &kp LA(LGUI)
+&kp GRAVE  &kp Q     &kp W  &kp E  &kp R      &kp T       &kp Y       &kp U          &kp I      &kp O    &kp P      &kp ESCAPE
+&kp TAB    &kp A     &kp S  &kp D  &kp F      &kp G       &kp H       &kp J          &kp K      &kp L    &kp SQT    &kp ENTER
+&kp LSHFT  &kp Z     &kp X  &kp C  &kp V      &kp B       &kp N       &kp M          &kp COMMA  &kp DOT  &kp SLASH  &kp LEFT_COMMAND
+&kp ESC    &kp LALT                &kp SPACE  &Layers3_4  &layers1_2  &kp BACKSPACE                      &tog 3     &kp LA(LGUI)
             >;
 
             //&msc_ec_lとrは、上のビヘイビアで作ったもの。
