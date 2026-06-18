@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-claude-code",
+  "name": "Claude Code",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Use Claude AI as a coding and note assistant with full vault access",
+  "author": "Claude",
+  "authorUrl": "https://anthropic.com",
+  "isDesktopOnly": false
+}

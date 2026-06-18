@@ -1,0 +1,277 @@
+/* ─── Claude Code Plugin Styles ──────────────────────────────────────────── */
+
+.claude-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 14px;
+}
+
+/* Header */
+.claude-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  flex-shrink: 0;
+}
+
+.claude-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-normal);
+}
+
+.claude-header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.claude-btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.claude-btn-sm:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+/* Messages */
+.claude-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.claude-welcome {
+  background: var(--background-secondary);
+  border-radius: 8px;
+  padding: 14px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.claude-welcome ul {
+  margin: 8px 0 0 0;
+  padding-left: 18px;
+}
+
+.claude-welcome li {
+  margin: 4px 0;
+}
+
+/* Message bubbles */
+.claude-msg {
+  display: flex;
+}
+
+.claude-msg-user {
+  justify-content: flex-end;
+}
+
+.claude-msg-assistant {
+  justify-content: flex-start;
+}
+
+.claude-bubble {
+  max-width: 88%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.claude-msg-user .claude-bubble {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-bottom-right-radius: 4px;
+}
+
+.claude-msg-assistant .claude-bubble {
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  border-bottom-left-radius: 4px;
+}
+
+.claude-msg-assistant .claude-bubble p:first-child {
+  margin-top: 0;
+}
+
+.claude-msg-assistant .claude-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.claude-msg-assistant .claude-bubble code {
+  background: var(--background-primary);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.claude-msg-assistant .claude-bubble pre {
+  background: var(--background-primary);
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.claude-msg-assistant .claude-bubble pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Tool calls */
+.claude-tool-call {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.claude-tool-call details summary {
+  padding: 6px 10px;
+  background: var(--background-secondary);
+  cursor: pointer;
+  font-family: var(--font-monospace);
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.claude-tool-call details summary:hover {
+  background: var(--background-modifier-hover);
+}
+
+.claude-tool-call details pre {
+  margin: 0;
+  padding: 8px 10px;
+  background: var(--background-primary);
+  overflow-x: auto;
+  max-height: 200px;
+}
+
+.claude-tool-call details code {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.claude-tool-result {
+  border-top: 1px solid var(--background-modifier-border);
+  background: var(--background-primary-alt);
+}
+
+.claude-tool-result pre {
+  border-top: none !important;
+}
+
+/* Loading */
+.claude-loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+.claude-dots span {
+  animation: claude-blink 1.2s infinite;
+  opacity: 0.4;
+}
+
+.claude-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.claude-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes claude-blink {
+  0%, 80%, 100% { opacity: 0.4; }
+  40% { opacity: 1; }
+}
+
+/* Input area */
+.claude-input-area {
+  padding: 10px 12px;
+  border-top: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.claude-textarea {
+  width: 100%;
+  resize: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: 13px;
+  font-family: var(--font-text);
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.claude-textarea:focus {
+  border-color: var(--interactive-accent);
+}
+
+.claude-input-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.claude-btn-primary {
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: none;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.claude-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.claude-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Mobile adjustments */
+.is-mobile .claude-bubble {
+  max-width: 95%;
+  font-size: 15px;
+}
+
+.is-mobile .claude-textarea {
+  font-size: 16px; /* prevent iOS zoom */
+}
+
+.is-mobile .claude-messages {
+  padding: 10px;
+  gap: 12px;
+}
