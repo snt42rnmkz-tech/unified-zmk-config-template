@@ -5,10 +5,12 @@ import {
   Notice,
   Plugin,
   PluginSettingTab,
+  RequestUrlParam,
   Setting,
   TFile,
   WorkspaceLeaf,
   normalizePath,
+  requestUrl,
 } from "obsidian";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -643,7 +645,10 @@ async function callClaude(
     messages,
   };
 
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
+  // Use Obsidian's requestUrl instead of fetch — on iOS, native fetch is
+  // blocked by WKWebView CORS policy; requestUrl routes through the native layer.
+  const params: RequestUrlParam = {
+    url: "https://api.anthropic.com/v1/messages",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -651,16 +656,17 @@ async function callClaude(
       "anthropic-version": "2023-06-01",
     },
     body: JSON.stringify(body),
-  });
+    throw: false,
+  };
 
-  if (!resp.ok) {
-    const err = await resp.json().catch(() => ({ error: { message: resp.statusText } }));
-    throw new Error(
-      `API error ${resp.status}: ${err?.error?.message ?? resp.statusText}`
-    );
+  const resp = await requestUrl(params);
+
+  if (resp.status !== 200) {
+    const msg = resp.json?.error?.message ?? `HTTP ${resp.status}`;
+    throw new Error(`API error ${resp.status}: ${msg}`);
   }
 
-  return resp.json();
+  return resp.json as AnthropicResponse;
 }
 
 // ─── Settings Tab ─────────────────────────────────────────────────────────────
